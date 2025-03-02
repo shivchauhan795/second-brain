@@ -1,5 +1,8 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import prisma from "@/app/db";
+import bcrypt from "bcrypt";
+
 const handler = NextAuth({
     pages: {
         signIn: "/signin",
@@ -12,15 +15,29 @@ const handler = NextAuth({
                 password: {}
             },
             async authorize(credentials, req) {
-                // db logic here
-                const username = credentials?.email;
+                const email = credentials?.email;
                 const password = credentials?.password;
-                console.log(username, password);
-                const user = {
-                    id: "1",
-                    name: "shiv",
-                    email: "abc@example.com",
+
+                const foundUser = await prisma.user.findFirst({
+                    where: {
+                        email: email,
+                    }
+                })
+
+                if (!foundUser) {
+                    return null;
                 }
+
+                if (password && !bcrypt.compare(password, foundUser.password)) {
+                    return null;
+                }
+
+                const user = {
+                    id: foundUser.id.toString(),
+                    name: foundUser.name,
+                    email: foundUser.email,
+                }
+
                 if (user) {
                     Response.json(user);
                     return user
