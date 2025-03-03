@@ -2,6 +2,7 @@
 import { signIn } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useRef } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Form() {
     const emailRef = useRef<HTMLInputElement>(null);
@@ -20,13 +21,14 @@ export default function Form() {
                 },
                 body: JSON.stringify({ email, password })
             });
-
+            const data = await response.json();
             if (!response.ok) {
-                throw new Error(response.statusText);
+                toast.error(data.message);
+                
+            } else {
+                toast.success("Signed Up Successful");
+                signIn()
             }
-            console.log(response);
-            console.log("Registration Successful");
-            signIn()
         } catch (error) {
             console.error(error);
         }
@@ -34,6 +36,10 @@ export default function Form() {
 
     return (
         <div className="flex justify-center items-center h-screen">
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             <div className="flex flex-col justify-center items-center border p-7 rounded-xl gap-4">
                 <div className="text-3xl font-semibold pb-3">Sign Up</div>
                 <form className='flex flex-col gap-5' action={handleFormSubmit}>

@@ -20,6 +20,7 @@ model Content {
   id       Int         @default(autoincrement()) @id
   link     String
   title    String
+  type     String
   userId   Int
   user   User          @relation(fields: [userId], references: [id])
 }
