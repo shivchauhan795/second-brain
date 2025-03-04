@@ -38,7 +38,7 @@ export default function Page() {
     }
 
     return (
-        <div>
+        <div className="bg-purple-300 h-screen w-screen text-black overflow-auto pb-10">
             <Navbar public={true} name={name} />
             <div className="flex flex-wrap justify-center pt-10 gap-6">
 

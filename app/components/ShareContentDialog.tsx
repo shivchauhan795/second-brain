@@ -26,7 +26,7 @@ export default function ShareContentDialog({ IsOpen, onClose }: { IsOpen: boolea
             if (data.message === "No Link Found") {
                 setIsChecked(false);
             } else {
-                setLink(`http://localhost:3000/secondbrain/${data.link?.hash}`);
+                setLink(`http://localhost:3000/getbrain/${data.link?.hash}`);
                 setIsChecked(true);
             }
         }
@@ -74,7 +74,7 @@ export default function ShareContentDialog({ IsOpen, onClose }: { IsOpen: boolea
                 reverseOrder={false}
             />
             {IsOpen && (
-                <div className="w-screen h-screen bg-red-50/90 fixed top-0 left-0 flex flex-col justify-center items-center">
+                <div className="w-screen h-screen bg-black/85 fixed top-0 left-0 flex flex-col justify-center items-center z-50">
                     <div className="bg-white px-5 py-3 rounded-xl shadow-black shadow-2xl min-w-80 min-h-fit flex flex-col gap-3">
 
                         <div onClick={() => { onClose() }} className="flex justify-end cursor-pointer text-black">

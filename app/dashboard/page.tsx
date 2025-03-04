@@ -44,22 +44,16 @@ export default function Dashboard() {
     }
 
     return (
-        <div className="flex flex-col h-screen justify-between">
+        <div className="flex flex-col h-screen w-screen overflow-auto justify-between bg-purple-300 text-black">
             <div>
 
                 <SessionProvider>
                     <AddContentDialog IsOpen={isModelOpen} onClose={() => setIsModelOpen(false)} />
                     <ShareContentDialog IsOpen={isShareModelOpen} onClose={() => setIsShareModelOpen(false)} />
-                    {/* {session ? (
-        <Button authButton={true} isSession={true} text="Logout" />
-        ) : (
-          <Button authButton={true} isSession={false} text="SignIn" />
-          )
-          } */}
 
                     <Navbar openAddContentModal={() => setIsModelOpen(true)} openShareContentModal={() => setIsShareModelOpen(true)} public={false} />
                 </SessionProvider>
-                <div className="flex flex-wrap justify-center pt-10 gap-6">
+                <div className="flex flex-wrap justify-center items-center mx-10 pt-10 gap-10">
 
                     {data && data.map((item?: Content) => {
                         return (
@@ -72,7 +66,7 @@ export default function Dashboard() {
 
             </div>
 
-            <div className="flex justify-end p-5">
+            <div className="flex justify-end items-end p-5">
                 <Button onClick={
                     () => {
                         getContent();
