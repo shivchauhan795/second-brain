@@ -26,7 +26,7 @@ export default function ShareContentDialog({ IsOpen, onClose }: { IsOpen: boolea
             if (data.message === "No Link Found") {
                 setIsChecked(false);
             } else {
-                setLink(`http://localhost:3000/getbrain/${data.link?.hash}`);
+                setLink(`https://second-brain.shivchauhan.com/getbrain/${data.link?.hash}`);
                 setIsChecked(true);
             }
         }
