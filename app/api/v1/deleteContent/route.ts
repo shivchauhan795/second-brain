@@ -1,5 +1,6 @@
 import { decode } from "next-auth/jwt";
 import { cookies } from "next/headers";
+import prisma from "@/app/db";
 
 export async function DELETE(req: Request) {
     try {
