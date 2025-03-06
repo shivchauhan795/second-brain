@@ -13,6 +13,7 @@ export async function DELETE(req: Request) {
         }
         const data = await req.json();
         const id = data.id;
+        console.log(typeof id);
         console.log(id, userId);
         await prisma?.content.delete({
             where: {
@@ -23,6 +24,7 @@ export async function DELETE(req: Request) {
 
         return new Response(JSON.stringify({ message: "Content Deleted Successfully" }));
     } catch (e) {
+        console.log(e);
         return new Response(JSON.stringify({ message: "Content Deletion Failed" }), { status: 500 });
     }
 }
