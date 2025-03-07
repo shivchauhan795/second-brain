@@ -32,7 +32,7 @@ export default function ShareContentDialog({ IsOpen, onClose }: { IsOpen: boolea
         }
         getShareContent();
 
-    }, []);
+    }, [IsOpen]);
 
     useEffect(() => {
         if (IsOpen && session) {

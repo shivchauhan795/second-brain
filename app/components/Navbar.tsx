@@ -24,7 +24,7 @@ export default function Navbar(props: NavbarProps) {
 
     return (
         <>
-            <div className="flex justify-between items-center px-2 py-4 w-screen">
+            <div className="flex justify-between items-center px-2 py-4 w-full">
                 <div onClick={() => { redirect("/") }} className="text-3xl font-semibold flex justify-center items-center gap-2 cursor-pointer">
                     <Brain size="size-12" />
                     Second Brain

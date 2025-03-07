@@ -23,7 +23,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         getContent();
-    }, []);
+    }, [isModelOpen, isShareModelOpen]);
 
     async function getContent() {
         try {
@@ -44,7 +44,7 @@ export default function Dashboard() {
     }
 
     return (
-        <div className="flex flex-col h-screen w-screen overflow-auto justify-between bg-purple-300 text-black">
+        <div className="flex flex-col h-screen w-screen overflow-y-auto justify-between bg-purple-300 text-black">
             <div>
 
                 <SessionProvider>
