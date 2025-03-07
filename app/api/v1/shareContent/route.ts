@@ -12,8 +12,9 @@ export async function POST(req: Request) {
             tokenName = "__Secure-next-auth.session-token";
         }
         const token = cookieStore.get(tokenName)?.value;
+        console.log("ye hai token", token);
         const decodedData = await decode({ token: token, secret: process.env.NEXTAUTH_SECRET || "" });
-
+        console.log("ye hai decodedData", decodedData);
         const userId = parseInt(decodedData?.sub ?? "");
         if (!userId) {
             return new Response(JSON.stringify({ message: "No User Found" }), { status: 401 });
