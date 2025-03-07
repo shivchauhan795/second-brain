@@ -7,9 +7,9 @@ export async function DELETE(req: Request) {
         const cookieStore = await cookies();
         let tokenName;
         if (process.env.NODE_ENV === "development") {
-            tokenName = "__Secure-next-auth.session-token";
-        } else {
             tokenName = "next-auth.session-token";
+        } else {
+            tokenName = "__Secure-next-auth.session-token";
         }
         const token = cookieStore.get(tokenName)?.value;
         const decodedData = await decode({ token: token, secret: process.env.NEXTAUTH_SECRET || "" });
