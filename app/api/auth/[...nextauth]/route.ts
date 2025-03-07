@@ -7,17 +7,6 @@ const handler = NextAuth({
     pages: {
         signIn: "/signin",
     },
-    cookies: {
-        sessionToken:{
-            name: "next-auth.session-token",
-            options: {
-                httpOnly: true,
-                sameSite: "lax",
-                path: "/",
-            }
-        }  
-    },
-    useSecureCookies: process.env.NODE_ENV === "production",
     providers: [
         CredentialsProvider({
             name: "email",
