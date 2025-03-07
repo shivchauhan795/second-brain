@@ -12,9 +12,7 @@ export async function POST(req: Request) {
             tokenName = "__Secure-next-auth.session-token";
         }
         const token = cookieStore.get(tokenName)?.value;
-        console.log("ye hai token", token);
         const decodedData = await decode({ token: token, secret: process.env.NEXTAUTH_SECRET || "" });
-        console.log("ye hai decodedData", decodedData);
         const userId = parseInt(decodedData?.sub ?? "");
         if (!userId) {
             return new Response(JSON.stringify({ message: "No User Found" }), { status: 401 });
@@ -60,7 +58,13 @@ export async function POST(req: Request) {
 export async function GET(req: Request) {
     try {
         const cookieStore = await cookies();
-        const token = cookieStore.get("next-auth.session-token")?.value;
+        let tokenName;
+        if (process.env.NODE_ENV === "development") {
+            tokenName = "next-auth.session-token";
+        } else {
+            tokenName = "__Secure-next-auth.session-token";
+        }
+        const token = cookieStore.get(tokenName)?.value;
         const decodedData = await decode({ token: token, secret: process.env.NEXTAUTH_SECRET || "" });
 
         const userId = parseInt(decodedData?.sub ?? "");
