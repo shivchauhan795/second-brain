@@ -5,7 +5,13 @@ import prisma from "@/app/db";
 export async function DELETE(req: Request) {
     try {
         const cookieStore = await cookies();
-        const token = cookieStore.get("next-auth.session-token")?.value;
+        let tokenName;
+        if (process.env.NODE_ENV === "development") {
+            tokenName = "__Secure-next-auth.session-token";
+        } else {
+            tokenName = "next-auth.session-token";
+        }
+        const token = cookieStore.get(tokenName)?.value;
         const decodedData = await decode({ token: token, secret: process.env.NEXTAUTH_SECRET || "" });
 
         const userId = parseInt(decodedData?.sub ?? "");
