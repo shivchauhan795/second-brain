@@ -36,7 +36,7 @@ export default function Dashboard() {
             });
             const data = await response.json();
             setdata(data.content);
-            console.log("ye hai data", data);
+            // console.log("ye hai data", data);
 
         } catch (e) {
             console.log(e);
