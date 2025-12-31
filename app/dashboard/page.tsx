@@ -70,7 +70,7 @@ export default function Dashboard() {
                 <Button onClick={
                     () => {
                         getContent();
-                        console.log("clicked");
+                        // console.log("clicked");
                     }
                 } text="Refresh" startIcon={<Refresh size="size-5" />} />
             </div>

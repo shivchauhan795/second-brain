@@ -16,7 +16,7 @@ export default function Form() {
                 password: passwordRef.current?.value,
                 redirect: false,
             });
-            console.log(response);
+            // console.log(response);
             if (response?.status === 200) {
                 toast.success("Signed In successfully");
                 router.push("/dashboard");

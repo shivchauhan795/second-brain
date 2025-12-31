@@ -40,7 +40,7 @@ export async function GET(req: Request) {
             }
         })
 
-        console.log("ye hai data", data);
+        // console.log("ye hai data", data);
         return new Response(JSON.stringify(data));
     } catch (e) {
         console.log(e);
